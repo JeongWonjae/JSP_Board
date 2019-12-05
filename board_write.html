@@ -1,0 +1,57 @@
+<HTML>
+
+  <HEAD>
+    <SCRIPT language="javascript">
+      function check(){
+        with(document.msgwrite){
+          if(subject.value.length==0){
+            alert("제목을 입력해주세요.");
+            subject.focus();
+            return false;
+          }
+          if(name.value.length==0){
+            alert("이름을 입력해주세요.");
+            name.focus();
+            return false;
+          }
+          if(content.value.length==0){
+            alert("내용을 입력해주세요.");
+            content.focus();
+            return false;
+          }
+        document.msgwrite.submit();
+        document.fileupload.submit();
+        }
+      }
+    </SCRIPT>
+
+    <STYLE type="text/css">
+      #frmtg{
+        position: relative;
+        left:5%;
+        top:5%;
+      }
+    </STYLE>
+  </HEAD>
+
+  <BODY>
+  <META http-equiv="Content-Type" content="text/html; charset=UTF-8"> <!--mime 타입 지정-->
+    <div id=frmtg>
+      <FORM name="msgwrite" method="post" action="board_save.jsp" enctype="multipart/form-data">
+        <FIELDSET STYLE = "width:300">
+          <legend>게시글 작성</legend>
+          <br>이름 <input type=text name=name><br><br>
+          메일 <input type=text name=mail><br><br>
+          제목 <input type=text name=subject size="60" maxlength="60"><br><br>
+          내용 <textArea cols="65" rows="10" name=content maxlength="2000"></textArea><br><br>
+          <input type="file" name="filename"><br>
+          <div style="text-align:right">암호 <input type=password name=password><br>(비밀번호를 입력하면 수정 또는 삭제)<br><br>
+          <a href="#" onClick="check();">OK</a>&nbsp&nbsp
+          <a href="#" onClick="history.go(-1)">CANCEL</a><br></div>
+        </FIELDSET>
+      </FORM>
+    </div>
+
+  </BODY>
+
+</HTML>

@@ -1,0 +1,48 @@
+<HTML>
+
+  <HEAD>
+    <meta charset="utf-8">
+    <SCRIPT language="javascript">
+      function check(){
+        with(document.update){
+          if(id.value.length==0){
+            alert("아이디를 입력해주세요.");
+            id.focus();
+            return false;
+          }
+          if(new_pw.value.length==0){
+            alert("수정할 패스워드를 입력해주세요.");
+            new_pw.focus();
+            return false;
+          }
+        document.update.submit();
+        }
+      }
+    </SCRIPT>
+
+    <STYLE type="text/css">
+      #frmtg{
+        position: relative;
+        left:5%;
+        top:5%;
+      }
+    </STYLE>
+  </HEAD>
+
+  <BODY>
+  <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <div id=frmtg>
+      <FORM name="update" method="post" action="board_update_pw.jsp">
+        <FIELDSET STYLE = "width:300">
+          <legend>비밀번호 수정</legend>
+          <br>ID <input type=text name=id><br><br>
+          New PW <input type=password name=new_pw><br><br>
+          <div style="text-align:right">
+          <a href="#" onClick="check();">OK</a>&nbsp&nbsp
+          <a href="#" onClick="history.go(-1)">CANCEL</a><br></div>
+        </FIELDSET>
+      </FORM>
+    </div>
+  </BODY>
+
+</HTML>
