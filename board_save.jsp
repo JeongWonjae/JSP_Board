@@ -10,7 +10,7 @@
   String uploadPath=application.getRealPath("brdProject/upload");
   MultipartRequest multi=new MultipartRequest(request, uploadPath, 1024*1024*10, "utf-8", new DefaultFileRenamePolicy()); //파일 업로드
 
-  String name = multi.getParameter("name"); //파라미터 변수 name에 저장된 변수를 얻어내는 메소드
+  String name = multi.getParameter("name");
   String mail = multi.getParameter("mail");
   String subject = multi.getParameter("subject");
   String content = multi.getParameter("content");
@@ -20,7 +20,20 @@
   if(content.length()==1)
   {
     content=content+" ";
-  } //본문의 내용길이가 1이면 공백을 더함
+  }
+
+/*
+  ArrayList<String> scriptcharArr = new ArrayList();
+  scriptcharArr.add("<");
+  scriptcharArr.add(">");
+  scriptcharArr.add("%");
+  scriptcharArr.add("<SCRIPT");
+  scriptcharArr.add("SCRIPT>");
+  int scriptcharArrIndex;
+  for(scriptcharArrIndex=0; scriptcharArrIndex<scriptcharArr.size();scriptcharArrIndex++){
+    content=content.replaceAll(scriptcharArr.get(scriptcharArrIndex), "");
+  }
+  */
 
   java.util.Date yymmdd = new java.util.Date();
   SimpleDateFormat myformat = new SimpleDateFormat("yy-MM-dd hh:mm a");
@@ -61,7 +74,7 @@
       out.println("데이터가 성공적으로 입력되었습니다.<br>");
       if(multi!=null)
       {
-        out.println("파일이 성공적으로 업로드 되었습니다.<br>파일 경로 : "+uploadPath+"\\");
+        out.println("파일이 성공적으로 업로드 되었습니다.<br>");
       }
     } else
     {

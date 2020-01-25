@@ -9,6 +9,7 @@
   String sql = null;
   Connection con = null;
   Statement st = null;
+  PreparedStatement pstmt=null;
   ResultSet rs = null;
   int cnt = 0;
 
@@ -24,10 +25,10 @@
   try
   {
     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/board?serverTimezone=UTC&useUnicode=true&charaterEncoding=euckr","root","root");
-    st = con.createStatement();
 
     sql = "select * from freeboard_login where id='"+id+"' and pw='"+pw+"'";
-    rs = st.executeQuery(sql);
+    stmt=con.createStatement();
+    rs=stmt.executeQuery(sql);
 
     if(rs.next())
     {
@@ -43,10 +44,17 @@
       out.println("<SCRIPT Language='javascript'>alert('로그인에 실패하였습니다.')</SCRIPT>");
     }
 
-    /* 로그인 시큐어 코딩
+
+/* //시큐어 코딩
+    sql = "select * from freeboard_login where id=? and pw=?";
+    pstmt=con.prepareStatement(sql);
+    pstmt.setString(1, id);
+    pstmt.setString(2, pw);
+    rs = pstmt.executeQuery();
+
     if(!(rs.next()))
     {
-        out.println("아이디 정보가 존재하지 않습니다.");
+        out.println("로그인 정보가 일치하지 않습니다.");
     }
     else
     {
@@ -63,15 +71,15 @@
         }
         else
         {
-            out.println("<SCRIPT language='javascript'>alert('비밀번호가 일치하지 않습니다.')</SCRIPT>");
+            out.println("<SCRIPT language='javascript'>alert('로그인 정보가 일치하지 않습니다.')</SCRIPT>");
         }
       }
       else
       {
-        out.println("<SCRIPT language='javascript'>alert('아이디가 일치하지 않습니다.')</SCRIPT>");
+        out.println("<SCRIPT language='javascript'>alert('로그인 정보가 일치하지 않습니다.')</SCRIPT>");
       }
     }
-    */
+*/
   } catch (SQLException e)
   {
     out.println(e);
